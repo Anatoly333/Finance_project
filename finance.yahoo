@@ -1,0 +1,23 @@
+import pandas
+import numpy as np
+import pandas as pd
+import yfinance as yf
+
+msft = yf.Ticker("MSFT")
+print(msft)
+data = yf.download("AAPL", start="2020-08-01", end="2020-09-01")
+print (data)
+X = data[['Open', 'High', 'Low']]
+y = data['Close']
+counter = 0
+summa = 0
+for i in range(len(data)):
+	summa += data.iloc[i][0]
+	counter += 1	
+average_price = summa / counter
+print(average_price)
+
+w_average_price = str(average_price)
+f = open('average_price.txt', 'w')
+f.write(w_average_price)
+f.close()
